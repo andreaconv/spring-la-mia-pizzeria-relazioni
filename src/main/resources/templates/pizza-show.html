@@ -15,7 +15,22 @@
 					<span>[[*{descrizione}]]</span>
 				</p>
 				<h5 class="d-inline">Prezzo: </h5>
-				<span>€ [[*{getFormattedPrice()}]]</span> <br>
+				<span>€ [[*{getFormattedPrice()}]]</span> <br>	
+				
+<!-- /*				ELEMENTI DELLA TABELLA SPECIALS */ -->
+				<div th:if="*{specials.size()} > 0">
+					<ul class="my-3 bg-success-subtle" >
+					
+						<li
+							th:each="special : *{specials}"
+							th:object="${special}"
+						>
+							[[*{specialDate}]] - [[*{titolo}]]
+						</li>
+					
+					</ul>
+				</div>
+				
 				<a href="/pizze" class="btn btn-primary mt-2">Menu pizze</a>
 			</div>
 		</div>

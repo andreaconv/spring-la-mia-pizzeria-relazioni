@@ -1,10 +1,14 @@
 package org.java.app;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 import org.java.app.db.pojo.Pizza;
+import org.java.app.db.pojo.Special;
 import org.java.app.db.serv.PizzaService;
+import org.java.app.db.serv.SpecialService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -15,10 +19,15 @@ public class SpringLaMiaPizzeriaCrudApplication implements CommandLineRunner {
 	
 	@Autowired
 	private PizzaService pizzaService;
+	
+	@Autowired
+	private SpecialService specialService;
 
 	public static void main(String[] args) {
 		SpringApplication.run(SpringLaMiaPizzeriaCrudApplication.class, args);
 	}
+	
+	Random random = new Random();
 	
 	@Override
 	public void run(String... args) throws Exception {
@@ -45,7 +54,21 @@ public class SpringLaMiaPizzeriaCrudApplication implements CommandLineRunner {
 	            new Pizza("ortolana", "mozzarella, peperoni, melanzane, zucchine, funghi", "ortolana", 7.5f)
 	    );
 	    
+	    Pizza pizzaSpecial =  new Pizza("special-1", "pomodoro, mozzarella, ingrediente speciale", "special-1", 9.5f);
+	    pizzaService.save(pizzaSpecial);
+	    
 	    pizze.forEach(pizzaService::save);
+//	    pizze.forEach(p -> pizzaService.save(p));
+	    
+	    
+	    
+	    int indiceCasuale = random.nextInt(pizze.size() - 1);
+//	    								LocalDate specialDate, LocalDate returnDate, String titolo, Pizza pizza
+	    Special special1 = new Special(LocalDate.now(), LocalDate.parse("2023-02-01"), "special 1", pizzaSpecial);
+	    specialService.save(special1);
+	    
+	    Special special2 = new Special(LocalDate.now(), LocalDate.parse("2023-02-01"), "special 2", pizze.get(indiceCasuale));
+	    specialService.save(special2);
 	    
 	    System.out.println("Insert OK!");
 	}

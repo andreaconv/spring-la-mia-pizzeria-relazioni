@@ -113,6 +113,13 @@ public class Pizza {
 		return String.format("%.2f", prezzo);
 	}
 
+	//SPECIAL
+	public List<Special> getSpecials() {
+		return specials;
+	}
+	public void setSpecials(List<Special> specials) {
+		this.specials = specials;
+	}
 	@Override
 	public String toString() {
 		return "[" + getId() + "] Pizza: \n"

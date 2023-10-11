@@ -33,9 +33,8 @@ public class Special {
 	
 	//COSTRUTTORE
 	public Special() {}
-	public Special(int id, LocalDate specialDate, LocalDate returnDate, String titolo, Pizza pizza) {
+	public Special(LocalDate specialDate, LocalDate returnDate, String titolo, Pizza pizza) {
 		
-		setId(id);
 		setSpecialDate(specialDate);
 		setReturnDate(returnDate);
 		setTitolo(titolo);
