@@ -1,0 +1,43 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="~{../fragments/head-frag :: head}"></th:block>
+<body class="bg-dark text-white" th:object="${pizza}">
+
+	<th:block th:replace="~{../fragments/header :: header}"></th:block>
+	
+	<div class="container d-flex justify-content-center py-5">
+	
+		<div class="card pizza" style="width: 30%;">
+			<img th:alt="*{foto}" th:src="@{/images/{name}.jpg (name=*{foto})}" class="card-img-top" width="30%">
+			<div class="card-body">
+				<h3 class="card-title text-capitalize">[[*{nome}]]</h3>
+				<p class="card-text">
+					<h4>Ingredienti: </h4>
+					<span>[[*{descrizione}]]</span>
+				</p>
+				<h5 class="d-inline">Prezzo: </h5>
+				<span>€ [[*{getFormattedPrice()}]]</span> <br>
+				<a href="/pizze" class="btn btn-primary mt-2">Menu pizze</a>
+			</div>
+		</div>
+	
+		
+<!-- 		VARI METODI PER RECUPERARE IL NOME DEL FILE -->
+<!-- 		<div>nome file: <span>[[${pizza.foto}]]</span></div> -->
+		
+<!-- 		<div>nome file: <span>[[*{foto}]]</span></div> -->
+		
+<!-- 		<div>nome file: <span>[[${pizza.getFoto()}]]</span></div> -->
+		
+<!-- 		<div>nome file: <span th:text="${pizza.foto}"></span></div> -->
+<!-- 		non funziona -->
+<!-- 		<div>nome file: <span th.text="*{foto}"></span></div> -->
+
+<!-- 			percorso dinamico dove "name" viene sostituito dalla proprietà dell'oggetto -->
+<!-- 		<img alt="pizza" th:src="@{/images/{name}.jpg (name=*{foto})}" width="30%"> -->
+
+	
+	</div>
+	
+
+</body>
+</html>
