@@ -19,14 +19,20 @@
 				
 <!-- /*				ELEMENTI DELLA TABELLA SPECIALS */ -->
 				<div th:if="*{specials.size()} > 0">
-					<ul class="my-3 bg-success-subtle" >
+					<ul class="ps-0 my-3 bg-success-subtle" >
 					
 						<li
 							th:each="special : *{specials}"
 							th:object="${special}"
+							class="border border-black py-2"
 						>
 							[[*{titolo}]] <br>
 							[[*{specialDate}]] ~ [[*{returnDate}]] 
+							<a title="Modifica" th:href="@{/pizze/special/edit/{id}(id=*{id})}">
+								<span class="btn btn-warning float-end me-2">
+									<i class="fa-solid fa-pencil text-white"></i>
+								</span>
+							</a>
 						</li>
 					
 					</ul>

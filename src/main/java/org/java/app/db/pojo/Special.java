@@ -1,6 +1,7 @@
 package org.java.app.db.pojo;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import org.hibernate.validator.constraints.Length;
 
@@ -21,7 +22,10 @@ public class Special {
 
 	//TITOLO
 	@Column(nullable = false)
-	@Length(min = 3, max = 255)
+	@Length(
+			min = 3, 
+			max = 255,
+			message = "Il titolo deve essere composto da 3~255 caratteri")
 	private String titolo;
 
 	//DATA INIZIO
@@ -70,6 +74,16 @@ public class Special {
 	public void setSpecialDate(LocalDate specialDate) {
 		this.specialDate = specialDate;
 	}
+	public String getHtmlStartDate() {
+		
+		return getSpecialDate() == null
+				? null
+				: getSpecialDate().format(DateTimeFormatter.ofPattern("YYYY-MM-dd"));
+	}
+	public void setHtmlStartDate(String startDate) {
+		
+		setSpecialDate(LocalDate.parse(startDate));
+	}
 
 	//RETURN DATE
 	public LocalDate getReturnDate() {
@@ -77,6 +91,16 @@ public class Special {
 	}
 	public void setReturnDate(LocalDate returnDate) {
 		this.returnDate = returnDate;
+	}
+	public String getHtmlEndDate() {
+		
+		return getReturnDate() == null
+				? null
+				: getReturnDate().format(DateTimeFormatter.ofPattern("YYYY-MM-dd"));
+	}
+	public void setHtmlEndDate(String endDate) {
+		
+		setReturnDate(LocalDate.parse(endDate));
 	}
 	
 	//PIZZA

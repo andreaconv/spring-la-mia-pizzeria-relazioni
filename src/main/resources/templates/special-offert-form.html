@@ -7,8 +7,8 @@
 	<div class="container d-flex flex-column py-5">
 	
 		<h1>
-<!-- 			<span th:text="${special.id < 1 ? 'CREA NUOVA' : 'MODIFICA'}"></span>  -->
-			<span class="text-capitalize">[[${pizza.nome}]]: NUOVA OFFERTA!</span>
+			<span class="text-capitalize">[[${pizza.nome}]]: </span> 
+			<span th:text="${special.id < 1 ? 'CREA NUOVA' : 'MODIFICA'}"></span> OFFERTA!
 		</h1>
 		
 		<form
@@ -16,7 +16,10 @@
 			method="POST"
 			>
 			
+					<input type="text" name="id" th:field="*{id}" hidden >
+					<input type="text" name="pizza" th:field="*{pizza}" hidden >
 			<div class="d-flex my-4">
+			
 			
 				<div class="mb-3 pe-3 w-25">
 				
@@ -28,6 +31,8 @@
 						th:field="*{titolo}" 
 						th:errorClass="is-invalid"
 						placeholder="Inserire il titolo">
+						
+<!-- /*			TODO: controllare la stampa degli errori, inserire il try catch nel metodo di salvataggio */-->
 					
 					<div th:if="${#fields.hasErrors('titolo')}" class="invalid-feedback">
 						<ul>
@@ -45,7 +50,7 @@
 						type="date" 
 						class="form-control" 
 						id="specialDate" name="specialDate" 
-						th:field="*{specialDate}" 
+						th:field="*{htmlStartDate}" 
 						th:errorClass="is-invalid"
 						placeholder="Inserire la data di inizio">
 					
@@ -65,7 +70,7 @@
 						type="date" 
 						class="form-control" 
 						id="returnDate" name="returnDate" 
-						th:field="*{returnDate}" 
+						th:field="*{htmlEndDate}" 
 						th:errorClass="is-invalid"
 						placeholder="Inserire la data di inizio">
 					
