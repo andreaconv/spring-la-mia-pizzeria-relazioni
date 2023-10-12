@@ -25,5 +25,9 @@ public class SpecialService {
 		
 		specialRepo.save(special);
 	}
+	public void deleteSpecial(Special special) {
+		
+		specialRepo.delete(special);
+	}
 
 }

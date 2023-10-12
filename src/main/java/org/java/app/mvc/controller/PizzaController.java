@@ -226,4 +226,14 @@ public class PizzaController {
 		
 		return "redirect:/pizze/" + pizza.getId();
 	}
+	
+	//DELETE SPECIAL
+	@PostMapping("/pizze/special/delete/{special_id}")
+	public String deleteSpecialOffert(@PathVariable("special_id") int id)
+	{
+		Special special = specialService.findById(id);
+		Pizza pizza = special.getPizza();
+		specialService.deleteSpecial(special);
+		return "redirect:/pizze/" + pizza.getId();
+	}
 }
