@@ -25,13 +25,15 @@
 							th:each="special : *{specials}"
 							th:object="${special}"
 						>
-							[[*{specialDate}]] - [[*{titolo}]]
+							[[*{titolo}]] <br>
+							[[*{specialDate}]] ~ [[*{returnDate}]] 
 						</li>
 					
 					</ul>
 				</div>
 				
 				<a href="/pizze" class="btn btn-primary mt-2">Menu pizze</a>
+				<a th:href="@{/pizze/special/{id}(id=*{id})}" class="btn btn-secondary float-end mt-2">Sponsorizza</a>
 			</div>
 		</div>
 	

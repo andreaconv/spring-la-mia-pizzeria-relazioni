@@ -63,11 +63,11 @@ public class SpringLaMiaPizzeriaCrudApplication implements CommandLineRunner {
 	    
 	    
 	    int indiceCasuale = random.nextInt(pizze.size() - 1);
-//	    								LocalDate specialDate, LocalDate returnDate, String titolo, Pizza pizza
-	    Special special1 = new Special(LocalDate.now(), LocalDate.parse("2023-02-01"), "special 1", pizzaSpecial);
+//	    								String titolo, Pizza pizza, LocalDate specialDate, LocalDate returnDate
+	    Special special1 = new Special("special 1", pizzaSpecial, LocalDate.now(), LocalDate.parse("2023-11-12"));
 	    specialService.save(special1);
 	    
-	    Special special2 = new Special(LocalDate.now(), LocalDate.parse("2023-02-01"), "special 2", pizze.get(indiceCasuale));
+	    Special special2 = new Special("special 2", pizze.get(indiceCasuale), LocalDate.now(), LocalDate.parse("2023-11-12"));
 	    specialService.save(special2);
 	    
 	    System.out.println("Insert OK!");

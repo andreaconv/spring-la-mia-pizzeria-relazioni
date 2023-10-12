@@ -2,6 +2,8 @@ package org.java.app.db.pojo;
 
 import java.time.LocalDate;
 
+import org.hibernate.validator.constraints.Length;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -17,14 +19,18 @@ public class Special {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
+	//TITOLO
+	@Column(nullable = false)
+	@Length(min = 3, max = 255)
+	private String titolo;
+
+	//DATA INIZIO
 	@Column(nullable = false)
 	private LocalDate specialDate;
 	
+	//DATA FINE
 	@Column(nullable = false)
 	private LocalDate returnDate;
-	
-	@Column(nullable = false)
-	private String titolo;
 	
 	//RELAZIONE TABELLA PIZZA
 	@ManyToOne
@@ -33,11 +39,11 @@ public class Special {
 	
 	//COSTRUTTORE
 	public Special() {}
-	public Special(LocalDate specialDate, LocalDate returnDate, String titolo, Pizza pizza) {
+	public Special(String titolo, Pizza pizza, LocalDate specialDate, LocalDate returnDate) {
 		
+		setTitolo(titolo);
 		setSpecialDate(specialDate);
 		setReturnDate(returnDate);
-		setTitolo(titolo);
 		setPizza(pizza);
 	}
 
@@ -49,6 +55,14 @@ public class Special {
 		this.id = id;
 	}
 
+	//TITOLO
+	public String getTitolo() {
+		return titolo;
+	}
+	public void setTitolo(String titolo) {
+		this.titolo = titolo;
+	}
+	
 	//SPECIAL DATE
 	public LocalDate getSpecialDate() {
 		return specialDate;
@@ -63,14 +77,6 @@ public class Special {
 	}
 	public void setReturnDate(LocalDate returnDate) {
 		this.returnDate = returnDate;
-	}
-	
-	//TITOLO
-	public String getTitolo() {
-		return titolo;
-	}
-	public void setTitolo(String titolo) {
-		this.titolo = titolo;
 	}
 	
 	//PIZZA

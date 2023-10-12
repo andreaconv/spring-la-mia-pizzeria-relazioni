@@ -3,7 +3,9 @@ package org.java.app.mvc.controller;
 import java.util.List;
 
 import org.java.app.db.pojo.Pizza;
+import org.java.app.db.pojo.Special;
 import org.java.app.db.serv.PizzaService;
+import org.java.app.db.serv.SpecialService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,6 +25,9 @@ public class PizzaController {
 
 	@Autowired
 	private PizzaService pizzaService;
+	
+	@Autowired
+	private SpecialService specialService;
 	
 	@GetMapping("/")
 	public String index(Model model) {
@@ -155,4 +160,36 @@ public class PizzaController {
 		return "redirect:/pizze";
 	}
 	
+	
+	@GetMapping("/pizze/special/{pizza_id}")
+	public String getSpecialOffertCreateForm(
+			@PathVariable("pizza_id") int id, Model model) {
+		
+		Pizza pizza = pizzaService.findById(id);
+		
+		model.addAttribute(pizza);
+		model.addAttribute("special", new Special());
+		
+		return "special-offert-form";
+	}
+	
+	@PostMapping("/pizze/special/{pizza_id}")
+	public String storeSpecialOffert(
+			@Valid @ModelAttribute Special special,
+			BindingResult bindingResult,
+			@PathVariable("pizza_id") int id, Model model) {
+		
+		if (bindingResult.hasErrors()) {
+			
+			return "special-offert-form"; 
+		}
+		
+		Pizza pizza = pizzaService.findById(id);
+		special.setPizza(pizza);
+		
+		specialService.save(special);
+		
+		return "redirect:/pizze/{pizza_id}";
+	}
+			
 }
