@@ -179,16 +179,25 @@ public class PizzaController {
 			@PathVariable("pizza_id") int id, Model model) {
 		
 		if (bindingResult.hasErrors()) {
+			System.out.println("Error:");
+			bindingResult.getAllErrors().forEach(System.out::println);
+			
+			Pizza pizza = pizzaService.findById(id);
+			model.addAttribute(pizza);
 			
 			return "special-offert-form"; 
 		}
 		
-//		TODO: [ADD] try - catch con msg d'errore
-		
-		Pizza pizza = pizzaService.findById(id);
-		special.setPizza(pizza);
-		
-		specialService.save(special);
+		try {
+			Pizza pizza = pizzaService.findById(id);
+			special.setPizza(pizza);
+			
+			specialService.save(special);
+		} catch (Exception e) {
+			
+			System.out.println("Errore constrain: " + e.getClass().getSimpleName());
+			return "special-offert-form";
+		}
 		
 		return "redirect:/pizze/{pizza_id}";
 	}
@@ -215,11 +224,27 @@ public class PizzaController {
 			@PathVariable("special_id") int id, Model model) {
 		
 		if (bindingResult.hasErrors()) {
+			System.out.println("Error:");
+			bindingResult.getAllErrors().forEach(System.out::println);
+			
+			Pizza pizza = pizzaService.findById(id);
+			model.addAttribute(pizza);
 			
 			return "special-offert-form"; 
 		}
 		
-//		TODO: [ADD] try - catch con msg d'errore
+		try {
+			Pizza pizza = pizzaService.findById(id);
+			special.setPizza(pizza);
+			
+			specialService.save(special);
+		} catch (Exception e) {
+			
+			System.out.println("Errore constrain: " + e.getClass().getSimpleName());
+			return "special-offert-form";
+		}
+		
+//		TODO: creare un metodo che invia l'errore essendo uguale al create riga 
 		
 		Special oldOffert = specialService.findById(id);
 		Pizza pizza = oldOffert.getPizza();
