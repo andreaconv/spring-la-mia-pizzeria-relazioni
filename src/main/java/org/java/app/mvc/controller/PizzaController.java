@@ -183,7 +183,7 @@ public class PizzaController {
 			return "special-offert-form"; 
 		}
 		
-//		TODO: [ADD] try - catch con ,sg d'errore
+//		TODO: [ADD] try - catch con msg d'errore
 		
 		Pizza pizza = pizzaService.findById(id);
 		special.setPizza(pizza);
@@ -202,7 +202,7 @@ public class PizzaController {
 		Special special = specialService.findById(id);
 		Pizza pizza = special.getPizza();
 		
-		model.addAttribute(pizza);
+		model.addAttribute("pizza", pizza);
 		
 		model.addAttribute("special", special);
 		
@@ -211,18 +211,22 @@ public class PizzaController {
 	@PostMapping("/pizze/special/edit/{special_id}")
 	public String updateSpecialOffert(
 			@Valid @ModelAttribute Special special,
-			BindingResult bindingResult, Model model) {
+			BindingResult bindingResult, 
+			@PathVariable("special_id") int id, Model model) {
 		
 		if (bindingResult.hasErrors()) {
 			
 			return "special-offert-form"; 
 		}
 		
-//		TODO: [ADD] try - catch con ,sg d'errore
+//		TODO: [ADD] try - catch con msg d'errore
+		
+		Special oldOffert = specialService.findById(id);
+		Pizza pizza = oldOffert.getPizza();
+		special.setId(id);
+		special.setPizza(pizza);
 		
 		specialService.save(special);
-		
-		Pizza pizza = special.getPizza();		
 		
 		return "redirect:/pizze/" + pizza.getId();
 	}
