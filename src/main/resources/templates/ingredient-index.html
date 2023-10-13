@@ -1,0 +1,28 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="~{../fragments/head-frag :: head}"></th:block>
+<body class="bg-dark text-white">
+
+	<th:block th:replace="~{../fragments/header :: header}"></th:block>
+
+	<div class="container py-5">
+	
+		<h2 class="text-center mb-3">INGREDIENTI</h2>
+		
+		<ul class="text-center">
+		
+			<li
+				th:each="ingredient : ${ingredients}"
+				th:object="${ingredient}"
+				class="mb-2"
+			>
+				[[*{nome}]]
+			
+			</li>
+		
+		</ul>
+	
+	</div>
+
+
+</body>
+</html>

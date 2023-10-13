@@ -5,8 +5,10 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
+import org.java.app.db.pojo.Ingredient;
 import org.java.app.db.pojo.Pizza;
 import org.java.app.db.pojo.Special;
+import org.java.app.db.serv.IngredientService;
 import org.java.app.db.serv.PizzaService;
 import org.java.app.db.serv.SpecialService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,9 @@ public class SpringLaMiaPizzeriaCrudApplication implements CommandLineRunner {
 	
 	@Autowired
 	private SpecialService specialService;
+	
+	@Autowired
+	private IngredientService ingredientService;
 
 	public static void main(String[] args) {
 		SpringApplication.run(SpringLaMiaPizzeriaCrudApplication.class, args);
@@ -31,12 +36,21 @@ public class SpringLaMiaPizzeriaCrudApplication implements CommandLineRunner {
 	
 	@Override
 	public void run(String... args) throws Exception {
+		
+		Ingredient pomodoro = new Ingredient("pomdoro");
+		Ingredient mozzarella = new Ingredient("mozzarella");
+		Ingredient basilico = new Ingredient("basilico");
+		
+		ingredientService.save(pomodoro);
+		ingredientService.save(mozzarella);
+		ingredientService.save(basilico);
+		
 		List<Pizza> pizze = Arrays.asList(
-			    new Pizza("marinara", "Pizza classica con pomodoro e origano", "https://assets.tmecosys.com/image/upload/t_web767x639/img/recipe/ras/Assets/97C2C718-5015-437F-8355-316EE000F57C/Derivates/556409BB-02E0-4BA3-BC16-F409F609FCED.jpg", 4.5f),
+			    new Pizza("marinara", "Pizza classica con pomodoro e origano", "https://assets.tmecosys.com/image/upload/t_web767x639/img/recipe/ras/Assets/97C2C718-5015-437F-8355-316EE000F57C/Derivates/556409BB-02E0-4BA3-BC16-F409F609FCED.jpg", 4.5f, pomodoro),
 			    
-			    new Pizza("margherita", "Deliziosa pizza con pomodoro, mozzarella e basilico", "https://upload.wikimedia.org/wikipedia/commons/c/c8/Pizza_Margherita_stu_spivack.jpg", 6.5f),
+			    new Pizza("margherita", "Deliziosa pizza con pomodoro, mozzarella e basilico", "https://upload.wikimedia.org/wikipedia/commons/c/c8/Pizza_Margherita_stu_spivack.jpg", 6.5f, pomodoro, mozzarella, basilico),
 			    
-			    new Pizza("wurstel", "Un tocco di wurstel su questa pizza classica", "https://www.dolcidee.it/media/uploads/recipe/5a5bb13339fd4_tmp26914248_2055067254519979_806649253_n.jpg", 5.5f),
+			    new Pizza("wurstel", "Un tocco di wurstel su questa pizza classica", "https://www.dolcidee.it/media/uploads/recipe/5a5bb13339fd4_tmp26914248_2055067254519979_806649253_n.jpg", 5.5f, pomodoro, mozzarella),
 			    
 			    new Pizza("diavola", "Per gli amanti del piccante", "https://i1.wp.com/www.piccolericette.net/piccolericette/wp-content/uploads/2017/06/3236_Pizza.jpg?resize=895%2C616&ssl=1", 8.5f),
 			    
