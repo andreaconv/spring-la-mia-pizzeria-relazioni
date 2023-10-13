@@ -230,14 +230,19 @@ public class PizzaController {
 			Pizza pizza = pizzaService.findById(id);
 			model.addAttribute(pizza);
 			
+//			FIXME: quando si cerca di modificare un'offerta e da un errore al titolo sbaglia a passarli la pizza perchè il nome cambia 
+			
 			return "special-offert-form"; 
 		}
 		
 		try {
-			Pizza pizza = pizzaService.findById(id);
+			Special oldOffert = specialService.findById(id);
+			Pizza pizza = oldOffert.getPizza();
+			special.setId(id);
 			special.setPizza(pizza);
 			
 			specialService.save(special);
+			
 		} catch (Exception e) {
 			
 			System.out.println("Errore constrain: " + e.getClass().getSimpleName());
@@ -248,10 +253,10 @@ public class PizzaController {
 		
 		Special oldOffert = specialService.findById(id);
 		Pizza pizza = oldOffert.getPizza();
-		special.setId(id);
-		special.setPizza(pizza);
-		
-		specialService.save(special);
+//		special.setId(id);
+//		special.setPizza(pizza);
+//		
+//		specialService.save(special);
 		
 		return "redirect:/pizze/" + pizza.getId();
 	}
