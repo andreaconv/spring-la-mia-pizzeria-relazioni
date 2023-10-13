@@ -38,7 +38,7 @@ public class Pizza {
 	@Length(
 		min = 3, 
 		max = 255, 
-		message = "Gli ingredienti devono essere composti da 3~255 caratteri"
+		message = "La descrizione deve essere composta da 3~255 caratteri"
 	)
 	private String descrizione;
 	
@@ -46,6 +46,8 @@ public class Pizza {
 	//FOTO
 	@Column(unique = true)
 	@Nullable
+	
+//	FIXME: se inserisco una sringa vuota mi calcola comunque come nome unico
 	private String foto;
 	
 	

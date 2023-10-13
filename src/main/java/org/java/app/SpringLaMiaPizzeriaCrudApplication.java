@@ -31,33 +31,52 @@ public class SpringLaMiaPizzeriaCrudApplication implements CommandLineRunner {
 	
 	@Override
 	public void run(String... args) throws Exception {
-	    List<Pizza> pizze = Arrays.asList(
-	            new Pizza("marinara", "pomodoro, origano, aglio", "marinara", 4.5f),
-	            new Pizza("margherita", "pomodoro, mozzarella, basilico", "margherita", 6.5f),
-	            new Pizza("wurstel", "pomodoro, mozzarella, wurstel", "wurstel", 5.5f),
-	            new Pizza("diavola", "pomodoro, mozzarella, salame piccante", "diavola", 8.5f),
-	            new Pizza("prosciutto", "pomodoro, mozzarella, prosciutto cotto", "prosciutto", 6f),
-	            new Pizza("napoletana", "pomodoro, mozzarella, acciughe, origano", "napoletana", 5.5f),
-	            new Pizza("pugliese", "pomodoro, mozzarella, cipolla", "pugliese", 5.5f),
-	            new Pizza("romana", "pomodoro, mozzarella, acciughe, capperi, origano", "romana", 6.5f),
-	            new Pizza("prosciutto e funghi", "pomodoro, mozzarella, prosciutto cotto, funghi", "prosc-funghi", 6.5f),
-	            new Pizza("quattro stagioni", "pomodoro, mozzarella, prosciutto cotto, funghi, carciofi, olive", "stagioni", 8.5f),
-	            new Pizza("parmigiana", "pomodoro, mozzarella, melanzane, grana", "parmigiana", 6f),
-	            new Pizza("capricciosa", "pomodoro, mozzarella, carciofi, funghi, olive, capperi, origano, acciughe", "capricciosa", 8f),
-	            new Pizza("quattro formaggi", "mozzarella, zola, scamorza, stracciatella di bufala", "formaggi", 8f),
-	            new Pizza("speck e zola", "pomodoro, mozzarella, speck, zola", "speck", 7f),
-	            new Pizza("estate", "pomodoro, mozzarella, pomodoro fresco, basilico", "estate", 6f),
-	            new Pizza("zucchine", "pomodoro, mozzarella, zucchine, grana", "zucchine", 6f),
-	            new Pizza("bufalina", "pomodoro, mozzarella bufala campana, basilico", "bufalina", 7f),
-	            new Pizza("prosciutto e carciofi", "pomodoro, mozzarella, prosciutto cotto, carciofi", "prosc-carciofi", 6.5f),
-	            new Pizza("tonno e cipolla", "pomodoro, mozzarella, tonno, cipolla", "tonno", 6.5f),
-	            new Pizza("ortolana", "mozzarella, peperoni, melanzane, zucchine, funghi", "ortolana", 7.5f)
-	    );
+		List<Pizza> pizze = Arrays.asList(
+			    new Pizza("marinara", "Pizza classica con pomodoro e origano", "https://assets.tmecosys.com/image/upload/t_web767x639/img/recipe/ras/Assets/97C2C718-5015-437F-8355-316EE000F57C/Derivates/556409BB-02E0-4BA3-BC16-F409F609FCED.jpg", 4.5f),
+			    
+			    new Pizza("margherita", "Deliziosa pizza con pomodoro, mozzarella e basilico", "https://upload.wikimedia.org/wikipedia/commons/c/c8/Pizza_Margherita_stu_spivack.jpg", 6.5f),
+			    
+			    new Pizza("wurstel", "Un tocco di wurstel su questa pizza classica", "https://www.dolcidee.it/media/uploads/recipe/5a5bb13339fd4_tmp26914248_2055067254519979_806649253_n.jpg", 5.5f),
+			    
+			    new Pizza("diavola", "Per gli amanti del piccante", "https://i1.wp.com/www.piccolericette.net/piccolericette/wp-content/uploads/2017/06/3236_Pizza.jpg?resize=895%2C616&ssl=1", 8.5f),
+			    
+			    new Pizza("prosciutto", "Una pizza semplice e gustosa", "https://www.petitchef.it/imgupl/recipe/pizza-al-prosciutto-crudo--450186p695926.jpg", 6f),
+			    
+			    new Pizza("napoletana", "Pizza tradizionale", "https://media-assets.lacucinaitaliana.it/photos/61fd2987802734d1e3672423/16:9/w_1280,c_limit/Pizza-alle-alici2.jpg", 5.5f),
+			    
+			    new Pizza("pugliese", "Una pizza con un tocco di cipolla", "https://www.lospicchiodaglio.it/img/ricette/pizzabiancacipolle.jpg", 5.5f),
+			    
+			    new Pizza("romana", "Il sapore unico", "https://www.petitchef.it/imgupl/recipe/pizza-napoletana-acciughe-e-capperi--457933p714661.jpg", 6.5f),
+			    
+			    new Pizza("prosciutto e funghi", "Una combinazione classica", "https://www.pizzeriasenzatempo.it/wp-content/uploads/2020/04/PROSCIUTTO-E-FUNGHI.jpg", 6.5f),
+			    
+			    new Pizza("quattro stagioni", "Una pizza per tutti i gusti", "https://assets.tmecosys.com/image/upload/t_web767x639/img/recipe/ras/Assets/A7B9D1B2-20CE-4D60-B18D-77D8E09F847A/Derivates/349C6F0F-E5E5-4327-9892-930DE2D8E89F.jpg", 8.5f),
+			    
+			    new Pizza("parmigiana", "Un mix irresistibile", "https://www.amando.it/imagesdyn/articoli/120/72/560/117684.jpg", 6f),
+			    new Pizza("capricciosa", "Una combinazione di ingredienti per i veri amanti delle pizze", "https://wips.plug.it/cips/buonissimo.org/cms/2019/04/pizza-capricciosa.jpg", 8f),
+			    
+			    new Pizza("quattro formaggi", "Per gli amanti dei formaggi", "https://wips.plug.it/cips/buonissimo.org/cms/2012/12/10798952_l.jpg", 8f),
+			    
+			    new Pizza("speck e zola", "La combinazione", "https://www.giallozafferano.it/images/9-943/Pizza-mascarpone-speck-e-noci_780x520_wm.jpg", 7f),
+			    
+			    new Pizza("estate", "Il sapore fresco di pomodoro fresco e basilico", "https://blog.giallozafferano.it/lebistro/wp-content/uploads/2015/06/IMG_0139.jpg", 6f),
+			    
+			    new Pizza("zucchine", "Una gustosa pizza", "https://s3.eu-central-1.amazonaws.com/quomi/media/174770/conversions/Pizza-bianca-zucchine-e-scamorza-affumicata-thumb-big.jpg", 6f),
+			    
+			    new Pizza("bufalina", "Il tocco unico", "https://www.delizieeconfidenze.com/wp-content/uploads/2019/02/IMG_8640.jpg", 7f),
+			    
+			    new Pizza("prosciutto e carciofi", "Un'ottima scelta", "https://www.ristorantelespecialita.it/wp-content/uploads/2016/04/pizza-con-carciofi-ricetta-lespecialita.jpg", 6.5f),
+			    
+			    new Pizza("tonno e cipolla", "Una combinazione di sapori", "https://www.bofrost.it/on/demandware.static/-/Sites-IT-master-catalog/default/dw012891e0/images/15196-Pizza-Tonno-e-Cipolla-R.jpg", 6.5f),
+			    
+			    new Pizza("ortolana", "Un'esplosione di verdure", "https://www.pizza.it/wp-content/uploads/2021/06/PIZZA-ORTOLANA-1024x683.jpg", 7.5f)
+			);
 	    
-	    Pizza pizzaSpecial =  new Pizza("special-1", "pomodoro, mozzarella, ingrediente speciale", "special-1", 9.5f);
+	    Pizza pizzaSpecial =  new Pizza("special-1", "La pizza speciale", "", 9.5f);
 	    pizzaService.save(pizzaSpecial);
 	    
 	    pizze.forEach(pizzaService::save);
+	    //alternativa
 //	    pizze.forEach(p -> pizzaService.save(p));
 	    
 	    

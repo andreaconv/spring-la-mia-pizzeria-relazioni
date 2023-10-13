@@ -34,9 +34,6 @@ public class PizzaService {
 	public List<Pizza> findByNome(String nomePizza){
 		
 		return pizzaRepo.findByNomeContaining(nomePizza);
-		
-//		FIXME: bug da aggiustare
-//		return pizzaRepo.findByNomeOrDescrizioneContaining(nomePizza, nomePizza);
 	}
 	
 	public void deletePizza(Pizza pizza) {

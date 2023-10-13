@@ -7,11 +7,12 @@
 	<div class="container d-flex justify-content-center py-5">
 	
 		<div class="card pizza" style="width: 30%;">
-			<img th:alt="*{foto}" th:src="@{/images/{name}.jpg (name=*{foto})}" class="card-img-top" width="30%">
+			<img th:alt="*{nome}" th:src="*{foto}" th:unless="*{foto.empty}" class="card-img-top" width="30%">
+			<img src="/images/placeholder.jpg" th:if="*{foto.empty}" class="card-img-top" width="30%">
 			<div class="card-body">
 				<h3 class="card-title text-capitalize">[[*{nome}]]</h3>
 				<p class="card-text">
-					<h4>Ingredienti: </h4>
+					<h4>Descrizione: </h4>
 					<span>[[*{descrizione}]]</span>
 				</p>
 				<h5 class="d-inline">Prezzo: </h5>
@@ -19,14 +20,17 @@
 				
 <!-- /*				ELEMENTI DELLA TABELLA SPECIALS */ -->
 				<div th:if="*{specials.size()} > 0">
-					<ul class="ps-0 my-3 bg-success-subtle" >
+				
+					<h4 class="text-danger my-2">OFFERTE SPECIALI!</h4>
+					<ul class="ps-0 mb-3 bg-success-subtle" >
 					
 						<li
 							th:each="special : *{specials}"
 							th:object="${special}"
-							class="border border-black py-2"
+							class="border border-black text-capitalize py-2"
 						>
 							[[*{titolo}]] <br>
+<!-- 						TODO: modificare la visualizzazione della data  -->
 							[[*{specialDate}]] ~ [[*{returnDate}]] 
 							<div class="d-inline float-end">
 							
