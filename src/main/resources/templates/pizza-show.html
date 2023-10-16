@@ -15,6 +15,14 @@
 					<h4>Descrizione: </h4>
 					<span>[[*{descrizione}]]</span>
 				</p>
+				<p class="card-text">
+					<h4>Ingredienti: </h4>
+					<span
+						class="badge text-bg-info text-capitalize me-1"
+						th:each="ing : *{ingredients}"
+						th:object="${ing}"
+					>[[*{nome}]]</span>
+				</p>
 				<h5 class="d-inline">Prezzo: </h5>
 				<span>€ [[*{getFormattedPrice()}]]</span> <br>	
 				

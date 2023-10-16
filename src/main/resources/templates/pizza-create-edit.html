@@ -58,6 +58,46 @@
 				
 			</div>
 			
+			<div class="my-3">
+			
+				<span>Ingredienti: </span>
+				
+				<div 
+					class="btn-group" 
+					role="group" 
+					aria-label="Basic checkbox toggle button group"
+					th:each="ingredient : ${ingredients}"
+					th:object="${ingredient}">
+					
+<!-- 				  <input  -->
+<!-- 				  	type="checkbox"  -->
+<!-- 				  	class="btn-check"  -->
+<!-- 				  	th:id="${'ingredient-' + ingredient.id}" -->
+<!-- 				  	th:value="*{id}" -->
+<!-- 				  	th:field="${pizza.ingredients}" -->
+<!-- 				  > -->
+<!-- 				  <label  -->
+<!-- 				  	class="btn btn-outline-primary rounded text-capitalize mx-1"  -->
+<!-- 				  	th:for="${'ingredient-' + ingredient.id}">[[*{nome}]]</label> -->
+
+<!-- 	TODO: sistemare la grafica della chechbox -->
+
+					<input 
+						type="checkbox"
+						th:id="${'ingredient-' + ingredient.id}" 
+						th:value="*{id}"
+						th:field="${pizza.ingredients}"
+					>
+					<label 
+						class="btn btn-outline-primary rounded text-capitalize mx-1"
+						th:for="${'ingredient-' + ingredient.id}">
+						[[*{nome}]]
+					</label>
+				  
+				</div>
+			</div>
+			
+			
 			<div class="d-flex justify-content-between">
 				
 				<div class="mb-3 pe-3 d-inline-block w-25">
@@ -117,6 +157,8 @@
 		
 	</div>
 
+<!--  <script src="/webjars/bootstrap/5.3.2/js/bootstrap.min.js"></script> -->
+<!--   <script th:src="@{/webjars/bootstrap/5.3.2/js/bootstrap.min.js}"></script> -->
 	
 </body>
 </html>
