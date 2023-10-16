@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -43,7 +44,37 @@ public class IngredientController {
 	public String storeIngredient(
 			@Valid @ModelAttribute Ingredient ingredient,
 			BindingResult bindingResult,
-			Model mode) {
+			Model model) {
+		
+		return saveIngrediente(ingredient, bindingResult, model);
+	}
+	
+	//EDIT INGREDIENTE
+	@GetMapping("/ingredients/update/{id}")
+	public String getEditForm(
+			@PathVariable int id,
+			Model model
+		) {
+
+		Ingredient ingredient = ingredientService.findById(id);
+		model.addAttribute("ingredient", ingredient);
+
+		return "ingredient-create-edit";
+	}
+	@PostMapping("ingredients/update/{id}")
+	public String updateIngredient(
+			@Valid @ModelAttribute Ingredient ingredient,
+			BindingResult bindingResult,
+			Model model) {
+		
+		return saveIngrediente(ingredient, bindingResult, model);
+	}
+	
+	//METODO CHE ACCOMUNA IL CREATE E L'EDIT
+	private String saveIngrediente(
+			Ingredient ingredient,
+			BindingResult bindingResult,
+			Model model) {
 		
 		if (bindingResult.hasErrors()) {
 			System.out.println("Error:");
@@ -52,7 +83,6 @@ public class IngredientController {
 			return "ingredient-create-edit";
 		}
 		
-//		ingredientService.save(ingredient);
 		try {
 			ingredientService.save(ingredient);
 		} catch (Exception e) {
