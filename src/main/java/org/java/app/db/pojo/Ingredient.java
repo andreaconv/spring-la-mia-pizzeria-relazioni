@@ -70,5 +70,21 @@ public class Ingredient {
 		
 		return "[" + getId() + "]" + getNome();
 	}
+	
+	// implementazione di metodi ereditati da OBJECT 
+	@Override
+	public int hashCode() {
+		
+		return getId();
+	}
+	@Override
+	public boolean equals(Object obj) {
+		
+		if (!(obj instanceof Ingredient)) return false;
+		
+		Ingredient objIng = (Ingredient) obj;
+		
+		return getId() == objIng.getId();
+	}
 
 }
