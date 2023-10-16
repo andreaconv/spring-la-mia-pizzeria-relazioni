@@ -2,11 +2,15 @@ package org.java.app.db.pojo;
 
 import java.util.List;
 
+import org.hibernate.validator.constraints.Length;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 public class Ingredient {
@@ -15,6 +19,14 @@ public class Ingredient {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
+	//NOME
+		@Column(length = 255, nullable = false)
+		@NotBlank(message = "Il nome non può essere vuoto")
+		@Length(
+			min = 2, 
+			max = 255, 
+			message = "Il nome deve essere composto da 2~255 caratteri"
+		)
 	private String nome;
 	
 	//RELAZIONE TABELLA INGREDIENTI

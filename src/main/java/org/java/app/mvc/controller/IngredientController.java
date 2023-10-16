@@ -52,8 +52,16 @@ public class IngredientController {
 			return "ingredient-create-edit";
 		}
 		
-		ingredientService.save(ingredient);
-		
+//		ingredientService.save(ingredient);
+		try {
+			ingredientService.save(ingredient);
+		} catch (Exception e) {
+			
+			// CONSTRAIN VALIDATION (unique)
+			System.out.println("Errore constrain: " + e.getClass().getSimpleName());
+			
+			return "ingredient-create-edit";
+		}
 		
 		return "redirect:/ingredients";
 	}
