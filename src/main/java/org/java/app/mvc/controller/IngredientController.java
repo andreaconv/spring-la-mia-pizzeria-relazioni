@@ -3,7 +3,9 @@ package org.java.app.mvc.controller;
 import java.util.List;
 
 import org.java.app.db.pojo.Ingredient;
+import org.java.app.db.pojo.Pizza;
 import org.java.app.db.serv.IngredientService;
+import org.java.app.db.serv.PizzaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,6 +24,9 @@ public class IngredientController {
 	
 	@Autowired
 	private IngredientService ingredientService;
+	
+	@Autowired
+	private PizzaService pizzaService;
 	
 	@GetMapping("/ingredients")
 	public String getIndex(Model model) {
@@ -95,5 +100,22 @@ public class IngredientController {
 		
 		return "redirect:/ingredients";
 	}
+	
+	//DELETE INGREDIENTE
+		@PostMapping("/ingredients/delete/{id}")
+		public String deleteIngredient(@PathVariable int id) {
+			
+			Ingredient ingredient = ingredientService.findById(id);
+			
+			for(Pizza p : ingredient.getPizze()) {
+				
+				 p.deleteIngredient(ingredient);
+				 pizzaService.save(p);
+			}
+			
+			ingredientService.deleteIngredient(ingredient);
+			
+			return "redirect:/ingredients";
+		}
 
 }
